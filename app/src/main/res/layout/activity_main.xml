@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:accessibilityTraversalAfter="@+id/howtoplay"
+    tools:context="com.fenil.codesprint.MainActivity">
+
+    <Button
+        android:id="@+id/play2"
+        android:layout_width="240dp"
+        android:layout_height="85dp"
+        android:layout_above="@+id/howtoplay"
+        android:layout_alignLeft="@+id/howtoplay"
+        android:layout_alignStart="@+id/howtoplay"
+        android:layout_marginBottom="73dp"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="0dp"
+        android:text="PLAY"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="154dp" />
+
+    <Button
+        android:id="@+id/howtoplay"
+        android:layout_width="240dp"
+        android:layout_height="85dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="145dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="HOW TO PLAY?"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="287dp" />
+
+</RelativeLayout>

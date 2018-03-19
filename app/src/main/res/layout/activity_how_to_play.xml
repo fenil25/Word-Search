@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fenil.codesprint.HowToPlay">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:paddingBottom="10px"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:text="HOW TO PLAY?"
+        android:textAllCaps="true"
+        android:textColor="#ccc"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="285dp"
+        android:background="@android:color/holo_purple"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="SCORE"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/title"
+        android:layout_alignStart="@+id/title"
+        android:layout_below="@+id/title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_purple"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="GAME"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/gamedescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/game"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="13dp"
+        android:text="The Game is pretty Simple. You will be given 25 random letters in a grid. You have to form as many words as possible in given time limit. You will form words by selecting letters in a tile. Once a letter is selected, you can only chose adjacent letters to form a given word. No tile can be chose twice for the same word. You can give up mid way. Once the timer stops, score will be calculated." />
+
+    <TextView
+        android:id="@+id/scoredescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/score"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="65dp"
+        android:text="You will be graded percentage-wise. Your total score will be percentage of number of valid words you made by total valid words possible. We will only consider words having 3 or more than 3 letters. Once, the game is done, you will get list of all possible words that could be made." />
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scoredescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/holo_blue_dark"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Begin Playing"
+        android:textSize="20sp" />
+
+</RelativeLayout>

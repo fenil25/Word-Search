@@ -16,28 +16,52 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class MainGame extends AppCompatActivity {
 
     TextView tv;
+    ArrayList<Integer> clicked = new ArrayList<>();
+
 
     public void select(View view) {
-        view.setBackgroundColor(0xFFFF33);
+        view.setBackgroundColor(0xff669900);
+        clicked.add(view.getId());
+    }
+
+    public void reset(View view) {
+        for (int i=0; i<clicked.size(); i++) {
+            int x = clicked.get(i);
+            TextView current = (TextView) findViewById(x);
+            current.setBackgroundColor(0xffffff);
+        }
+        for (int i=clicked.size()-1; i>=0; i--) {
+            clicked.remove(i);
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
-
+        Random random=new Random();
         List<String> alphabets = new ArrayList<>();
-        for(char k='A';k<='Z';k++)
+        alphabets.add("A");
+        alphabets.add("E");
+        alphabets.add("I");
+        alphabets.add("O");
+        alphabets.add("U");
+        for(char k=0;k<21;k++)
         {
-            String c = k+"";
-            if(k=='U')
-                {continue;}
-            else if(k=='Q')
-                {c = "Qu";}
+            int d=random.nextInt(26);
+            String c;
+            if(d==16) {
+                c="Qu";
+            }
+            else {
+                d+=65;
+                c = (char)d+"";
+            }
             alphabets.add(c);
         }
         Collections.shuffle(alphabets);
@@ -53,11 +77,8 @@ public class MainGame extends AppCompatActivity {
                 tv = (TextView)findViewById(x);
                 tv.setText(alphabets.get(k));
                 twod[i][j]=alphabets.get(k);
-                tv.setGravity(17);
-                if(alphabets.get(k).equals("Qu"))
-                {
+                if(alphabets.get(k).equals("Qu")) {
                     tv.setPadding(15,10,0,10);
-                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,35);
                 }
                 k++;
             }

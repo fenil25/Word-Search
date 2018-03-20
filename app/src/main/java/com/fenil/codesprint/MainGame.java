@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainGame extends AppCompatActivity {
@@ -43,6 +43,7 @@ public class MainGame extends AppCompatActivity {
         Collections.shuffle(alphabets);
 
         int k=0;
+        String[][] twod= new String[5][5];
         for(int i=0;i<=4;i++)
         {
             for(int j = 0;j<=4;j++)
@@ -51,17 +52,18 @@ public class MainGame extends AppCompatActivity {
                 int x = getResources().getIdentifier(s,"id",getPackageName());
                 tv = (TextView)findViewById(x);
                 tv.setText(alphabets.get(k));
+                twod[i][j]=alphabets.get(k);
                 tv.setGravity(17);
                 if(alphabets.get(k).equals("Qu"))
-                    {
-                        tv.setPadding(15,10,0,10);
-                        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,35);
-                    }
+                {
+                    tv.setPadding(15,10,0,10);
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,35);
+                }
                 k++;
             }
         }
 
-        TrieNode root;
+        TrieNode root = null;
         AssetManager assetManager = getAssets();
         try {
             BufferedReader br;
@@ -78,5 +80,9 @@ public class MainGame extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        MainWorkingClass mwc = new MainWorkingClass(twod, root);
+        HashMap<String, String[]> store;
+        store = mwc.start();
     }
 }

@@ -520,5 +520,15 @@
 
     </GridLayout>
 
+    <TextView
+        android:id="@+id/gameStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gridLayout2"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignStart="@+id/button3"
+        android:layout_marginBottom="18dp"
+        android:text="Let's Play!" />
+
 
 </android.widget.RelativeLayout>

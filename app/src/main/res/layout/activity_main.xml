@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:accessibilityTraversalAfter="@+id/howtoplay"
+    android:background="@drawable/group_6_1024"
     tools:context="com.fenil.codesprint.MainActivity">
 
     <Button
         android:id="@+id/play2"
-        android:layout_width="240dp"
-        android:layout_height="85dp"
-        android:layout_above="@+id/howtoplay"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
         android:layout_alignLeft="@+id/howtoplay"
         android:layout_alignStart="@+id/howtoplay"
-        android:layout_marginBottom="73dp"
-        android:background="@color/colorPrimary"
+        android:layout_below="@+id/button"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/button_states"
         android:elevation="0dp"
         android:text="PLAY"
         android:textAlignment="center"
@@ -28,18 +29,37 @@
 
     <Button
         android:id="@+id/howtoplay"
-        android:layout_width="240dp"
-        android:layout_height="85dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/play2"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="145dp"
-        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="102dp"
+        android:background="@drawable/button_states"
         android:text="HOW TO PLAY?"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@android:color/black"
         android:textSize="30sp"
         android:textStyle="bold|italic"
         tools:layout_editor_absoluteX="81dp"
         tools:layout_editor_absoluteY="287dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:alpha="0.4"
+        android:background="@android:color/black"
+        android:onClick="didTapButton"
+        android:text="FIND THE WORD"
+        android:textColor="@android:color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>

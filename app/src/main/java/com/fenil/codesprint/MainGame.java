@@ -1,5 +1,6 @@
 package com.fenil.codesprint;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,37 +14,157 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
+import java.util.SimpleTimeZone;
 
 public class MainGame extends AppCompatActivity {
 
-    TextView tv;
+    TextView tv, gameStatus;
+    String[][] twod; String submit_word="";
+    ArrayList<Integer> clicked = new ArrayList<>();
+    //TrieNode root = null;
+    //Trie trie=new Trie();
+    HashMap<String, String[]> store;
+    WordTrie trie=new WordTrie();
+    int score=0, counter=1;
+    ArrayList<String> submitted_words = new ArrayList<>();
+    View parent=null;
+
+    public boolean isAdjacent(View view) {
+        String child=view.getTag()+"";
+
+        if(parent!=null) {
+            String parentId=parent.getTag()+"";
+            Log.e("parent",(Integer.parseInt(parentId))+"");
+            if(child.equals((Integer.parseInt(parentId)+1)+"") || child.equals((Integer.parseInt(parentId)-1)+"") || child.equals((Integer.parseInt(parentId)+10)+"") || child.equals((Integer.parseInt(parentId)+11)+"") || child.equals((Integer.parseInt(parentId)+9)+"") || child.equals((Integer.parseInt(parentId)-10)+"") || child.equals((Integer.parseInt(parentId)-9)+"") || child.equals((Integer.parseInt(parentId)-11)+"")) {
+                parent=view;
+                return true;
+            }
+        }
+        else {
+            parent=view;
+            return true;
+        }
+//        Log.e("chils", chils);
+//        String child;
+//        if(chils.length()==1)
+//            {child = twod[0][(int)chils.charAt(0)-48];}
+//        else
+//            {child = twod[(int)chils.charAt(0)-48][(int)chils.charAt(1)-48];}
+//
+//        Log.e("parent",parent+"1");
+//        Log.e("child",child);
+//        if(parent.equals("")) {
+//            Log.e("parent",parent+"2");
+//            parent=child;
+//            return true;
+//        }
+//        else {
+//            String x[] = store.get(parent);
+//            ArrayList<String> cx = new ArrayList<String>(Arrays.asList(x));
+//            Log.e("adj",Arrays.toString(x));
+//            if (cx.contains(child)) {
+//                parent = child;
+//                return true;
+//            }
+//        }
+        return false;
+    }
 
     public void select(View view) {
-        view.setBackgroundColor(0xFFFF33);
+        tv = (TextView)findViewById(view.getId());
+        if(isAdjacent(view) && !clicked.contains(tv.getText())) {
+            Log.e("msg", "adjacent");
+            view.setBackgroundColor(0xff669900);
+            clicked.add(view.getId());
+//        String s = "text"+i+j;
+//        int x = getResources().getIdentifier(s,"id",getPackageName());
+            submit_word += tv.getText();
+            if (trie.isPrefix(submit_word)) {
+                gameStatus.setText("Word is possible!");
+            } else {
+                gameStatus.setText("Word is not possible!");
+                reset(view);
+            }
+            Log.e("len", submit_word.length() + "");
+            if (submit_word.length() >= 3) {
+                Log.e("as", trie.contais(submit_word) + "");
+                if (trie.contais(submit_word)) {
+                    if (!submitted_words.contains(submit_word)) {
+                        submitted_words.add(submit_word);
+                        score += submit_word.length() * counter;
+                        counter++;
+                        gameStatus.setText(score + "");
+                        reset(view);
+                    } else {
+                        gameStatus.setText("Ullu banaega kya?");
+                        reset(view);
+                    }
+                }
+            }
+        }
+        else {
+            gameStatus.setText("Kya be?");
+        }
     }
+
+    public void reset(View view) {
+        for (int i=0; i<clicked.size(); i++) {
+            int x = clicked.get(i);
+            TextView current = (TextView) findViewById(x);
+            current.setBackgroundColor(0xffffff);
+        }
+        for (int i=clicked.size()-1; i>=0; i--) {
+            clicked.remove(i);
+        }
+        submit_word = "";
+        parent=null;
+    }
+//
+//    public ArrayList<String> possible(int i,int j) {
+//        String parent=twod[i][j],word=parent;
+//        ArrayList<String> adjacent=adjacentLetters(i,j);
+//        for(int k=0;k<adjacent.size();k++) {
+//            if(getChild(parent, adjacent.get(k))) {
+//                word +=adjacent.get(k);
+//                parent = adjacent.get(k);
+//            }
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
-
+        Random random=new Random();
+        gameStatus = (TextView) findViewById(R.id.gameStatus);
         List<String> alphabets = new ArrayList<>();
-        for(char k='A';k<='Z';k++)
+        alphabets.add("A");
+        alphabets.add("E");
+        alphabets.add("I");
+        alphabets.add("O");
+        alphabets.add("U");
+        for(char k=0;k<21;k++)
         {
-            String c = k+"";
-            if(k=='U')
-                {continue;}
-            else if(k=='Q')
-                {c = "Qu";}
+            int d=random.nextInt(26);
+            String c;
+            if(d==16) {
+                continue;
+            }
+            else {
+                d+=65;
+                c = (char)d+"";
+            }
             alphabets.add(c);
         }
         Collections.shuffle(alphabets);
 
         int k=0;
-        String[][] twod= new String[5][5];
+        twod= new String[5][5];
         for(int i=0;i<=4;i++)
         {
             for(int j = 0;j<=4;j++)
@@ -53,36 +174,32 @@ public class MainGame extends AppCompatActivity {
                 tv = (TextView)findViewById(x);
                 tv.setText(alphabets.get(k));
                 twod[i][j]=alphabets.get(k);
-                tv.setGravity(17);
-                if(alphabets.get(k).equals("Qu"))
-                {
+                if(alphabets.get(k).equals("Qu")) {
                     tv.setPadding(15,10,0,10);
-                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,35);
                 }
                 k++;
+                //ArrayList<String> possibleWords=possible(i,j);
             }
         }
 
-        TrieNode root = null;
+
         AssetManager assetManager = getAssets();
         try {
             BufferedReader br;
             br = new BufferedReader(new InputStreamReader(assetManager.open("words.txt")));
-            root = new TrieNode();
+            //root = new TrieNode();
             String line = null;
             while((line = br.readLine()) != null) {
                 String word = line.trim();
                 if (word.length() >= 3)
-                    root.add(line.trim());
+                    trie.add(line.trim());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        MainWorkingClass mwc = new MainWorkingClass(twod, root);
-        HashMap<String, String[]> store;
+        MainWorkingClass mwc = new MainWorkingClass(twod);
         store = mwc.start();
     }
 }

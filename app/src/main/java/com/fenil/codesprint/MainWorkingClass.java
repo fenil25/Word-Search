@@ -7,10 +7,8 @@ import java.util.HashMap;
 
 class MainWorkingClass {
     private String[][] m;
-    private TrieNode active;
-    public MainWorkingClass(String[][] twod, TrieNode root) {
+    public MainWorkingClass(String[][] twod) {
         m = twod;
-        active = root;
     }
 
     HashMap<String, String[]> start()

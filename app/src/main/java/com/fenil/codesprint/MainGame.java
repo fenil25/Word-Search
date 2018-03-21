@@ -2,6 +2,7 @@ package com.fenil.codesprint;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +43,7 @@ public class MainGame extends AppCompatActivity {
 
         if(parent!=null) {
             String parentId=parent.getTag()+"";
-            Log.e("parent",(Integer.parseInt(parentId))+"");
+            //Log.e("parent",(Integer.parseInt(parentId))+"");
             if(child.equals((Integer.parseInt(parentId)+1)+"") || child.equals((Integer.parseInt(parentId)-1)+"") || child.equals((Integer.parseInt(parentId)+10)+"") || child.equals((Integer.parseInt(parentId)+11)+"") || child.equals((Integer.parseInt(parentId)+9)+"") || child.equals((Integer.parseInt(parentId)-10)+"") || child.equals((Integer.parseInt(parentId)-9)+"") || child.equals((Integer.parseInt(parentId)-11)+"")) {
                 parent=view;
                 return true;
@@ -82,7 +83,9 @@ public class MainGame extends AppCompatActivity {
         tv = (TextView)findViewById(view.getId());
         if(isAdjacent(view) && !clicked.contains(tv.getText())) {
             Log.e("msg", "adjacent");
-            view.setBackgroundColor(0xff669900);
+            //view.setBackgroundColor(0xff669900);
+            tv.setBackgroundResource(R.drawable.buttonselect);
+            tv.setTextColor(Color.WHITE);
             clicked.add(view.getId());
 //        String s = "text"+i+j;
 //        int x = getResources().getIdentifier(s,"id",getPackageName());
@@ -101,7 +104,7 @@ public class MainGame extends AppCompatActivity {
                         submitted_words.add(submit_word);
                         score += submit_word.length() * counter;
                         counter++;
-                        gameStatus.setText(score + "");
+                        gameStatus.setText("Your score: " + score);
                         reset(view);
                     } else {
                         gameStatus.setText("Ullu banaega kya?");
@@ -119,7 +122,9 @@ public class MainGame extends AppCompatActivity {
         for (int i=0; i<clicked.size(); i++) {
             int x = clicked.get(i);
             TextView current = (TextView) findViewById(x);
-            current.setBackgroundColor(0xffffff);
+            //current.setBackgroundColor(0xffffff);
+            current.setBackgroundResource(R.drawable.roundbuttons);
+            current.setTextColor(0xff002338);
         }
         for (int i=clicked.size()-1; i>=0; i--) {
             clicked.remove(i);
@@ -165,7 +170,7 @@ public class MainGame extends AppCompatActivity {
         alphabets.add("I");
         alphabets.add("O");
         alphabets.add("U");
-        for(char k=0;k<21;k++)
+        while(alphabets.size()<=25)
         {
             int d=random.nextInt(26);
             String c;
@@ -175,8 +180,10 @@ public class MainGame extends AppCompatActivity {
             else {
                 d+=65;
                 c = (char)d+"";
+                if(!alphabets.contains(c) || c.equals("A") || c.equals("E") || c.equals("I") || c.equals("O") || c.equals("U")) {
+                    alphabets.add(c);
+                }
             }
-            alphabets.add(c);
         }
         Collections.shuffle(alphabets);
 

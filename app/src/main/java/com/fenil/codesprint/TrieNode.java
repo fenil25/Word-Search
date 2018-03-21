@@ -1,6 +1,7 @@
 package com.fenil.codesprint;
 import android.util.Log;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class TrieNode {
@@ -15,17 +16,19 @@ public class TrieNode {
     public void add(String s) {
         HashMap<Character, TrieNode> temp = children;
         for(int i = 0;i<s.length();i++)
+
+    public boolean isWordPossible(String s){
+        TrieNode temp = this;
+        for(int i=0;i<s.length();i++)
         {
-            if(!temp.containsKey(s.charAt(i)))
-            {
-                temp.put(s.charAt(i), new TrieNode());
+            if(temp.children.containsKey(s.charAt(i))){
+                temp = temp.children.get(s.charAt(i));
             }
-            if(i==s.length()-1)
-            {
-                temp.get(s.charAt(i)).isWord = true;
+            else{
+                return false;
             }
-            temp = temp.get(s.charAt(i)).children;
         }
+        return true;
     }
 
     public boolean isWord(String s) {

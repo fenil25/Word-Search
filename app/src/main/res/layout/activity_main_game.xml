@@ -37,12 +37,12 @@
         tools:layout_editor_absoluteY="447dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
+        android:layout_above="@+id/gameStatus"
+        android:layout_toEndOf="@+id/button3"
+        android:layout_toRightOf="@+id/button3"
         android:text="Time Left: "
         tools:layout_editor_absoluteX="263dp"
         tools:layout_editor_absoluteY="27dp" />

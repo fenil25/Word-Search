@@ -1,5 +1,6 @@
 package com.fenil.codesprint;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,36 +32,52 @@ public class MainGame extends AppCompatActivity {
     WordTrie trie=new WordTrie();
     int score=0, counter=1;
     ArrayList<String> submitted_words = new ArrayList<>();
-    String parent="";
+    View parent=null;
 
-    public boolean isAdjacent(String chils) {
-        String child;
-        if(chils.length()==1)
-            {child = twod[0][(int)chils.charAt(0)-48];}
-        else
-            {child = twod[(int)chils.charAt(0)-48][(int)chils.charAt(1)-48];}
-        Log.e("parent",parent+"1");
-        Log.e("child",child);
-        if(parent.equals("")) {
-            Log.e("parent",parent+"2");
-            parent=child;
-            return true;
-        }
-        else {
-            String x[] = store.get(parent);
-            ArrayList<String> cx = new ArrayList<String>(Arrays.asList(x));
-            Log.e("adj",Arrays.toString(x));
-            if (cx.contains(child)) {
-                parent = child;
+    public boolean isAdjacent(View view) {
+        String child=view.getTag()+"";
+
+        if(parent!=null) {
+            String parentId=parent.getTag()+"";
+            Log.e("parent",(Integer.parseInt(parentId))+"");
+            if(child.equals((Integer.parseInt(parentId)+1)+"") || child.equals((Integer.parseInt(parentId)-1)+"") || child.equals((Integer.parseInt(parentId)+10)+"") || child.equals((Integer.parseInt(parentId)+11)+"") || child.equals((Integer.parseInt(parentId)+9)+"") || child.equals((Integer.parseInt(parentId)-10)+"") || child.equals((Integer.parseInt(parentId)-9)+"") || child.equals((Integer.parseInt(parentId)-11)+"")) {
+                parent=view;
                 return true;
             }
         }
+        else {
+            parent=view;
+            return true;
+        }
+//        Log.e("chils", chils);
+//        String child;
+//        if(chils.length()==1)
+//            {child = twod[0][(int)chils.charAt(0)-48];}
+//        else
+//            {child = twod[(int)chils.charAt(0)-48][(int)chils.charAt(1)-48];}
+//
+//        Log.e("parent",parent+"1");
+//        Log.e("child",child);
+//        if(parent.equals("")) {
+//            Log.e("parent",parent+"2");
+//            parent=child;
+//            return true;
+//        }
+//        else {
+//            String x[] = store.get(parent);
+//            ArrayList<String> cx = new ArrayList<String>(Arrays.asList(x));
+//            Log.e("adj",Arrays.toString(x));
+//            if (cx.contains(child)) {
+//                parent = child;
+//                return true;
+//            }
+//        }
         return false;
     }
 
     public void select(View view) {
         tv = (TextView)findViewById(view.getId());
-        if(isAdjacent(view.getTag()+"") && !clicked.contains(tv.getText())) {
+        if(isAdjacent(view) && !clicked.contains(tv.getText())) {
             Log.e("msg", "adjacent");
             view.setBackgroundColor(0xff669900);
             clicked.add(view.getId());
@@ -105,7 +122,7 @@ public class MainGame extends AppCompatActivity {
             clicked.remove(i);
         }
         submit_word = "";
-        parent="";
+        parent=null;
     }
 //
 //    public ArrayList<String> possible(int i,int j) {

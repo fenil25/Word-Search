@@ -2,6 +2,8 @@ package com.fenil.codesprint;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +35,7 @@ public class MainGame extends AppCompatActivity {
     int score=0, counter=1;
     ArrayList<String> submitted_words = new ArrayList<>();
     View parent=null;
+    TextView timer;
 
     public boolean isAdjacent(View view) {
         String child=view.getTag()+"";
@@ -140,6 +143,20 @@ public class MainGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
+        timer = (TextView) findViewById(R.id.timer);
+
+        new CountDownTimer(120000, 1000) {
+            public void onTick(long millisecondsUntilDone) {
+                //Log.i("Seconds done: ", String.valueOf(millisecondsUntilDone / 1000));
+                timer.setText("Time left: " + millisecondsUntilDone / 1000 + "s");
+            }
+            public void onFinish() {
+                //Log.i("Done!", "Countdown timer finished");
+                timer.setText("Good game!");
+            }
+        }.start();
+
+
         Random random=new Random();
         gameStatus = (TextView) findViewById(R.id.gameStatus);
         List<String> alphabets = new ArrayList<>();

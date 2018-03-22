@@ -144,6 +144,7 @@ public class MainGame extends AppCompatActivity {
 //            }
 //        }
 //    }
+    CountDownTimer cdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +152,7 @@ public class MainGame extends AppCompatActivity {
         setContentView(R.layout.activity_main_game);
         timer = (TextView) findViewById(R.id.timer);
 
-        new CountDownTimer(120000, 1000) {
+        cdt = new CountDownTimer(120000, 1000) {
             public void onTick(long millisecondsUntilDone) {
                 //Log.i("Seconds done: ", String.valueOf(millisecondsUntilDone / 1000));
                 timer.setText("Time left: " + millisecondsUntilDone / 1000 + "s");
@@ -163,6 +164,7 @@ public class MainGame extends AppCompatActivity {
                 i.putExtra("score", score);
                 startActivity(i);
             }
+
         }.start();
 
         Button b = (Button) findViewById(R.id.button);
@@ -172,6 +174,7 @@ public class MainGame extends AppCompatActivity {
                 Intent i = new Intent(MainGame.this, FinalActivity.class);
                 i.putExtra("score", score);
                 startActivity(i);
+                cdt.cancel();
             }
         });
 

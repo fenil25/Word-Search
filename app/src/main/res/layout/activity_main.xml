@@ -15,7 +15,7 @@
         android:layout_alignLeft="@+id/howtoplay"
         android:layout_alignStart="@+id/howtoplay"
         android:layout_below="@+id/button"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="126dp"
         android:background="@drawable/button_states"
         android:elevation="0dp"
         android:text="PLAY"

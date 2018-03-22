@@ -12,40 +12,24 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/gridLayout2"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
+        android:layout_alignRight="@+id/gridLayout2"
+        android:layout_marginBottom="35dp"
         android:background="@color/colorPrimaryDark"
         android:text="Finish"
+        android:textColor="@android:color/background_light"
         tools:layout_editor_absoluteX="216dp"
-        tools:layout_editor_absoluteY="447dp" />
-
-    <Button
-        android:id="@+id/button2"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="30dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="Solution"
-        tools:layout_editor_absoluteX="71dp"
         tools:layout_editor_absoluteY="447dp" />
 
     <TextView
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/gameStatus"
-        android:layout_alignLeft="@+id/button3"
-        android:layout_alignStart="@+id/button3"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="40dp"
+        android:layout_alignLeft="@+id/gameStatus"
+        android:layout_alignStart="@+id/gameStatus"
+        android:layout_below="@+id/gameStatus"
+        android:layout_marginTop="20dp"
         android:text="Time Left: "
         android:textColor="@android:color/background_light"
         android:textSize="25sp"
@@ -55,14 +39,20 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_alignTop="@+id/button2"
-        android:layout_centerHorizontal="true"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button"
+        android:layout_alignBottom="@+id/button"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorPrimaryDark"
         android:onClick="reset"
-        android:text="Submit"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="393dp" />
+        android:text="Undo"
+        android:textColor="@android:color/background_light"
+        tools:layout_editor_absoluteX="216dp"
+        tools:layout_editor_absoluteY="447dp" />
 
     <GridLayout
         android:id="@+id/gridLayout2"
@@ -612,6 +602,20 @@
         android:text="Let's Play!"
         android:textColor="@android:color/background_light"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/timer"
+        android:layout_alignBottom="@+id/timer"
+        android:layout_alignEnd="@+id/button"
+        android:layout_alignRight="@+id/button"
+        android:layout_marginEnd="42dp"
+        android:layout_marginRight="42dp"
+        android:text="Your Score: 0"
+        android:textColor="@android:color/background_light"
+        android:textSize="25sp" />
 
 
 </android.widget.RelativeLayout>

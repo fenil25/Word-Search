@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,7 +29,7 @@ import java.util.SimpleTimeZone;
 
 public class MainGame extends AppCompatActivity {
 
-    TextView tv, gameStatus;
+    TextView tv, gameStatus, scoretext;
     String[][] twod; String submit_word="";
     ArrayList<Integer> clicked = new ArrayList<>();
     //TrieNode root = null;
@@ -92,8 +94,9 @@ public class MainGame extends AppCompatActivity {
 //        int x = getResources().getIdentifier(s,"id",getPackageName());
             submit_word += tv.getText();
             if (trie.isPrefix(submit_word)) {
-                gameStatus.setText("Word is possible!");
-            } else {
+                gameStatus.setText("Go on!");
+            }
+            else {
                 gameStatus.setText("Word is not possible!");
                 reset(view);
             }
@@ -105,17 +108,18 @@ public class MainGame extends AppCompatActivity {
                         submitted_words.add(submit_word);
                         score += submit_word.length() * counter;
                         counter++;
-                        gameStatus.setText("Your score: " + score);
+                        scoretext.setText("Your score: " + score);
+                        gameStatus.setText("Way to go!");
                         reset(view);
                     } else {
-                        gameStatus.setText("Ullu banaega kya?");
+                        gameStatus.setText("Don't Repeat!");
                         reset(view);
                     }
                 }
             }
         }
         else {
-            gameStatus.setText("Kya be?");
+            gameStatus.setText("Adjacent Values only!");
         }
     }
 
@@ -151,8 +155,9 @@ public class MainGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
         timer = (TextView) findViewById(R.id.timer);
+        scoretext=(TextView)findViewById(R.id.score);
 
-        cdt = new CountDownTimer(120000, 1000) {
+        cdt = new CountDownTimer(60000, 1000) {
             public void onTick(long millisecondsUntilDone) {
                 //Log.i("Seconds done: ", String.valueOf(millisecondsUntilDone / 1000));
                 timer.setText("Time left: " + millisecondsUntilDone / 1000 + "s");
@@ -177,8 +182,6 @@ public class MainGame extends AppCompatActivity {
                 cdt.cancel();
             }
         });
-
-
         Random random=new Random();
         gameStatus = (TextView) findViewById(R.id.gameStatus);
         List<String> alphabets = new ArrayList<>();
@@ -187,22 +190,48 @@ public class MainGame extends AppCompatActivity {
         alphabets.add("I");
         alphabets.add("O");
         alphabets.add("U");
+        ArrayList<String> higher_priority = new ArrayList<String>(Arrays.asList( "T", "N", "S", "R", "H", "L", "D", "C", "M", "F", "G","W", "Y", "B"));
+        ArrayList<String> lower_priority = new ArrayList<String>(Arrays.asList( "V", "K", "X", "J", "Q", "Z", "A", "E", "I", "O", "U"));
         while(alphabets.size()<=25)
         {
-            int d=random.nextInt(26);
+            int d=random.nextInt(2);
             String c;
-            if(d==16) {
-                continue;
-            }
-            else {
-                d+=65;
-                c = (char)d+"";
-                if(!alphabets.contains(c) || c.equals("A") || c.equals("E") || c.equals("I") || c.equals("O") || c.equals("U")) {
-                    alphabets.add(c);
-                }
+            if (d==1) {
+                int a1 = random.nextInt(higher_priority.size());
+                int a2 = random.nextInt(higher_priority.size());
+                alphabets.add(higher_priority.get(a1));
+                alphabets.add(higher_priority.get(a2));
+            } else {
+                int b1 = random.nextInt(lower_priority.size());
+                alphabets.add(lower_priority.get(b1));
             }
         }
         Collections.shuffle(alphabets);
+
+//        Random random=new Random();
+//        gameStatus = (TextView) findViewById(R.id.gameStatus);
+//        List<String> alphabets = new ArrayList<>();
+//        alphabets.add("A");
+//        alphabets.add("E");
+//        alphabets.add("I");
+//        alphabets.add("O");
+//        alphabets.add("U");
+//        while(alphabets.size()<=25)
+//        {
+//            int d=random.nextInt(26);
+//            String c;
+//            if(d==16) {
+//                continue;
+//            }
+//            else {
+//                d+=65;
+//                c = (char)d+"";
+//                if(!alphabets.contains(c) || c.equals("A") || c.equals("E") || c.equals("I") || c.equals("O") || c.equals("U")) {
+//                    alphabets.add(c);
+//                }
+//            }
+//        }
+//        Collections.shuffle(alphabets);
 
         int k=0;
         twod= new String[5][5];

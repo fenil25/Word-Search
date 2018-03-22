@@ -83,7 +83,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="65dp"
-        android:text="You will be graded percentage-wise. Your total score will be percentage of number of valid words you made by total valid words possible. We will only consider words having 3 or more than 3 letters. Once, the game is done, you will get list of all possible words that could be made."
+        android:text="You will be graded according to the length of the word. Your score will progressively multiply based on the number of correct words found. We will only consider words having 3 or more than 3 letters. Once, the game is done, you will get your final score."
         android:textColor="@android:color/background_light" />
 
     <Button
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/scoredescription"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="60dp"
         android:background="#00ded0"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"

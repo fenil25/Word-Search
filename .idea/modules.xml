@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Word-Search.iml" filepath="$PROJECT_DIR$/Word-Search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CodeSprint.iml" filepath="$PROJECT_DIR$/CodeSprint.iml" />
+      <module fileurl="file://C:\Users\Lenovo\AndroidStudioProjects\CodeSprint\Word-Search.iml" filepath="C:\Users\Lenovo\AndroidStudioProjects\CodeSprint\Word-Search.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

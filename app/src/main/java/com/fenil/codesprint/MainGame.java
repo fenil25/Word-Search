@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -158,8 +159,21 @@ public class MainGame extends AppCompatActivity {
             public void onFinish() {
                 //Log.i("Done!", "Countdown timer finished");
                 timer.setText("Good game!");
+                Intent i = new Intent(MainGame.this, FinalActivity.class);
+                i.putExtra("score", score);
+                startActivity(i);
             }
         }.start();
+
+        Button b = (Button) findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainGame.this, FinalActivity.class);
+                i.putExtra("score", score);
+                startActivity(i);
+            }
+        });
 
 
         Random random=new Random();
